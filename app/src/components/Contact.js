@@ -24,13 +24,25 @@ const Contact = (props) => {
         setIsEditing(true);
     };
 
+    const deleteItem = (id) => {
+        // delete contact from contacts
+        if (window.confirm("Are you sure you want to delete this contact?")) {
+            // if contact is currently being edited, close the form
+            if (contact && contact.id === id) {
+                setIsEditing(false);
+                setContact({});
+            }
+            deleteContact(id);
+        }
+    };
+
     return (
         <div >
             <ContactList
                 contacts={contacts}
                 editContact={editContact}
                 addContact={() => editContact()}
-                deleteContact={deleteContact}
+                deleteContact={deleteItem}
             />
             {isEditing &&<ContactForm contact={contact} setContact={contactFormSubmit} />}
         </div>
