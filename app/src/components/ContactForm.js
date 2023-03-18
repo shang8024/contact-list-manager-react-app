@@ -37,7 +37,7 @@ const ContactForm = ({ contact, setContact }) => {
         alert('Please fill all the fields');
         return;
     }
-    // add contact to contacts
+    // add/update contact to contacts
     if (isEditing) {
       setContact({
         id: contact.id,
@@ -66,6 +66,7 @@ const ContactForm = ({ contact, setContact }) => {
 
   useEffect(() => {
     setIsExpanded(true);
+    // set contact to be edited
     if (contact) {
         setFirstName(contact.first_name);
         setLastName(contact.last_name);

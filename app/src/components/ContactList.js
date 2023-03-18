@@ -7,8 +7,10 @@ const ContactList = ({ contacts, editContact, deleteContact, addContact}) => {
     const [filteredContacts, setFilteredContacts] = React.useState(contacts);
 
     const searchContact = (event) => {
+        // update search term
         let string = event.target.value;
         setSearchTerm(string);
+        // filter contacts based on search term
         setFilteredContacts(contacts.filter((contact) => {
             let fullName = contact.first_name + ' ' + contact.last_name;
             return fullName.toLowerCase().includes(string.toLowerCase())
@@ -20,19 +22,23 @@ const ContactList = ({ contacts, editContact, deleteContact, addContact}) => {
 
     const editItem = (e,contact) => {
         e.stopPropagation();
+        // update contact in filteredContacts
         let newContacts = filteredContacts;
         let index = newContacts.findIndex((item) => item.id === contact.id);
         if (index !== -1) {
             newContacts[index] = contact;
         }
         setFilteredContacts(newContacts);
+        // update contact in contacts
         editContact(contact);
     };
 
     const deleteId = (e,id) => {
         e.stopPropagation();
+        // delete contact from filteredContacts
         let newContacts = filteredContacts.filter((contact) => contact.id !== id);
         setFilteredContacts(newContacts);
+        // delete contact from contacts
         deleteContact(id);
     };
     
