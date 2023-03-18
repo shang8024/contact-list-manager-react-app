@@ -18,6 +18,17 @@ const ContactList = ({ contacts, editContact, deleteContact, addContact}) => {
         }));
     };
 
+    const editItem = (e,contact) => {
+        e.stopPropagation();
+        let newContacts = filteredContacts;
+        let index = newContacts.findIndex((item) => item.id === contact.id);
+        if (index !== -1) {
+            newContacts[index] = contact;
+        }
+        setFilteredContacts(newContacts);
+        editContact(contact);
+    };
+
     const deleteId = (e,id) => {
         e.stopPropagation();
         let newContacts = filteredContacts.filter((contact) => contact.id !== id);
@@ -42,9 +53,7 @@ const ContactList = ({ contacts, editContact, deleteContact, addContact}) => {
             <div className='contactList'>
             {filteredContacts.map((contact) => (
                 <ContactInfo contact={contact}
-                    editContact={(e)=> {
-                        e.stopPropagation();
-                        editContact(contact);}}
+                    editContact={(e)=> editItem(e,contact)}
                     deleteContact={(e) => deleteId(e,contact.id)}
                     key={contact.id}
                 />

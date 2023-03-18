@@ -133,8 +133,8 @@ const ContactForm = ({ contact, setContact }) => {
                     type="text"
                     name="phone"
                     id="phone"
-                    pattern="[0-9]{9}"
-                    title="Phone number should be 9 digits"
+                    pattern="[0-9]{10}"
+                    title="Phone number should be 10 digits"
                     value={phone}
                     onChange={(e)=>setPhone(e.target.value)}
                 />
