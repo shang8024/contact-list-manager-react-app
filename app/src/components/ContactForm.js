@@ -65,6 +65,7 @@ const ContactForm = ({ contact, setContact }) => {
   };
 
   useEffect(() => {
+    setIsExpanded(true);
     if (contact) {
         setFirstName(contact.first_name);
         setLastName(contact.last_name);
@@ -89,24 +90,26 @@ const ContactForm = ({ contact, setContact }) => {
       {isExpanded &&
       <form onSubmit={handleSubmit}>
         <div className="contactFormHeader">
-          <p>{isEditing ? 'Edit Contact' : 'Add Contact'}</p>
+          <h1>{isEditing ? 'Edit Contact' : 'Add Contact'}</h1>
         </div>
         <div className="contactFormBody">
-          <div className="contactFormItem">
+          <div className="contactFormItem" style={{width:"50%"}}>
             <label htmlFor="first_name">First Name</label>
             <input
               type="text"
               name="first_name"
               id="first_name"
+              required
               value={first_name}
               onChange={(e)=>setFirstName(e.target.value)}
             />
           </div>
-          <div className="contactFormItem">
+          <div className="contactFormItem" style={{width:"50%"}}>
             <label htmlFor="last_name">Last Name</label>
             <input
               type="text"
               name="last_name"
+              required
               id="last_name"
               value={last_name}
               onChange={(e)=>setLastName(e.target.value)}
@@ -117,6 +120,7 @@ const ContactForm = ({ contact, setContact }) => {
             <input
               type="email"
               name="email"
+              required
                 id="email"
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}
@@ -125,6 +129,7 @@ const ContactForm = ({ contact, setContact }) => {
             <div className="contactFormItem">
                 <label htmlFor="phone">Phone</label>
                 <input
+                    required
                     type="text"
                     name="phone"
                     id="phone"
@@ -140,6 +145,7 @@ const ContactForm = ({ contact, setContact }) => {
                     type="text"
                     name="address"
                     id="address"
+                    required
                     value={address}
                     onChange={(e)=>setAddress(e.target.value)}
                 />
