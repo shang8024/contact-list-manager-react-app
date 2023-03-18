@@ -37,7 +37,7 @@ const Contact = (props) => {
     };
 
     return (
-        <div >
+        <>
             <ContactList
                 contacts={contacts}
                 editContact={editContact}
@@ -45,7 +45,7 @@ const Contact = (props) => {
                 deleteContact={deleteItem}
             />
             {isEditing &&<ContactForm contact={contact} setContact={contactFormSubmit} />}
-        </div>
+        </>
     );
 };
 
