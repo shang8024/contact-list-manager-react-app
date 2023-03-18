@@ -2,7 +2,7 @@
 import React from 'react';
 import ContactInfo from './ContactInfo';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, editContact, deleteContact, addContact}) => {
     const [searchTerm, setSearchTerm] = React.useState('');
     const filteredContacts = contacts.filter((contact) => {
         let fullName = contact.first_name + ' ' + contact.last_name;
@@ -21,13 +21,13 @@ const ContactList = ({ contacts }) => {
                         value={searchTerm}
                     />
                 </div>
-                <div className='addBtn'>
+                <div className='addBtn' onClick={addContact}>
                     <i className="fa fa-plus" aria-hidden="true"></i>
                 </div>
             </div>
             <div className='contactList'>
             {filteredContacts.map((contact) => (
-                <ContactInfo contact={contact} />
+                <ContactInfo contact={contact} editContact={()=>editContact(contact)} deleteContact={()=>deleteContact(contact.id)} key={contact.id} />
             ))}
             </div>
         </div>

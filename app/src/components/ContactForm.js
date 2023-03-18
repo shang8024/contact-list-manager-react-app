@@ -11,30 +11,36 @@ const ContactForm = ({ contact, setContact }) => {
   const isEditing = contact ? true : false;
   const [isExpanded, setIsExpanded] = React.useState(true);
 
-  const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
-  };
-
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
-  };
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
+  const allInputsFilled = () => {
+    if (!first_name) {
+        return false;
+    }
+    if (!last_name) {
+        return false;
+    }
+    if (!email) {
+        return false;
+    }
+    if (!phone) {
+        return false;
+    }
+    if (!address) {
+        return false;
+    }
+    return true;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // check all fields are filled
+    if (!allInputsFilled()) {
+        alert('Please fill all the fields');
+        return;
+    }
+    // add contact to contacts
     if (isEditing) {
       setContact({
+        id: contact.id,
         first_name,
         last_name,
         email,
@@ -50,6 +56,7 @@ const ContactForm = ({ contact, setContact }) => {
         address,
       });
     }
+    // clear all the fields
     setFirstName('');
     setLastName('');
     setEmail('');
@@ -75,7 +82,7 @@ const ContactForm = ({ contact, setContact }) => {
               name="first_name"
               id="first_name"
               value={first_name}
-              onChange={handleFirstNameChange}
+              onChange={(e)=>setFirstName(e.target.value)}
             />
           </div>
           <div className="contactFormItem">
@@ -85,7 +92,7 @@ const ContactForm = ({ contact, setContact }) => {
               name="last_name"
               id="last_name"
               value={last_name}
-              onChange={handleLastNameChange}
+              onChange={(e)=>setLastName(e.target.value)}
             />
           </div>
           <div className="contactFormItem">
@@ -95,7 +102,7 @@ const ContactForm = ({ contact, setContact }) => {
               name="email"
                 id="email"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={(e)=>setEmail(e.target.value)}
             />
             </div>
             <div className="contactFormItem">
@@ -104,8 +111,10 @@ const ContactForm = ({ contact, setContact }) => {
                     type="text"
                     name="phone"
                     id="phone"
+                    pattern="[0-9]{9}"
+                    title="Phone number should be 9 digits"
                     value={phone}
-                    onChange={handlePhoneChange}
+                    onChange={(e)=>setPhone(e.target.value)}
                 />
             </div>
             <div className="contactFormItem">
@@ -115,7 +124,7 @@ const ContactForm = ({ contact, setContact }) => {
                     name="address"
                     id="address"
                     value={address}
-                    onChange={handleAddressChange}
+                    onChange={(e)=>setAddress(e.target.value)}
                 />
             </div>
         </div>
