@@ -12,13 +12,13 @@ const ContactInfo = ({ contact }) => {
             </div>
             <div className='basicInfo'>
                 <p>{first_name} {last_name}</p>
-                <p>{email}</p>
+                <i>{email}</i>
             </div>
             <div className='operationContainer'>
-                <div>
+                <div className='editBtn'>
                     <i className="fa fa-pencil" aria-hidden="true"></i>
                 </div>
-                <div>
+                <div className='deleteBtn'>
                     <i className="fa fa-trash" aria-hidden="true"></i>
                 </div>
             </div>
