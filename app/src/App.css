@@ -237,7 +237,7 @@ form .contactFormItem{
   font-size: 16px;
 }
 
-input:focus {
+.contactFormItem input:focus {
   outline: none;
   background-color: #f1f1f1;
 }
