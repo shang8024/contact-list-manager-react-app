@@ -65,7 +65,6 @@ const ContactForm = ({ contact, setContact }) => {
   };
 
   useEffect(() => {
-    setIsExpanded(true);
     if (contact) {
         setFirstName(contact.first_name);
         setLastName(contact.last_name);

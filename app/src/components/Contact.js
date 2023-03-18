@@ -19,7 +19,6 @@ const Contact = (props) => {
 
     const editContact = (contact) => {
         // set contact to be edited
-        console.log(contact);
         setContact(contact);
         // open the form
         setIsEditing(true);
