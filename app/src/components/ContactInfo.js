@@ -1,7 +1,7 @@
 // display single person's contact info
 import React from 'react';
 
-const ContactInfo = ({ contact }) => {
+const ContactInfo = ({ contact,editContact,deleteContact }) => {
   const { first_name, last_name, email, phone, address } = contact;
   const [isExpanded, setIsExpanded] = React.useState(false);
   return (
@@ -15,10 +15,10 @@ const ContactInfo = ({ contact }) => {
                 <i>{email}</i>
             </div>
             <div className='operationContainer'>
-                <div className='editBtn'>
+                <div className='editBtn' onClick={editContact}>
                     <i className="fa fa-pencil" aria-hidden="true"></i>
                 </div>
-                <div className='deleteBtn'>
+                <div className='deleteBtn' onClick={deleteContact}>
                     <i className="fa fa-trash" aria-hidden="true"></i>
                 </div>
             </div>

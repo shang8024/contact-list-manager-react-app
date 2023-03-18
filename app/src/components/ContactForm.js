@@ -1,6 +1,6 @@
 // contact form for adding/editing contact
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const ContactForm = ({ contact, setContact }) => {
   const [first_name, setFirstName] = React.useState(contact ? contact.first_name : '');
@@ -63,6 +63,24 @@ const ContactForm = ({ contact, setContact }) => {
     setPhone('');
     setAddress('');
   };
+
+  useEffect(() => {
+    setIsExpanded(true);
+    if (contact) {
+        setFirstName(contact.first_name);
+        setLastName(contact.last_name);
+        setEmail(contact.email);
+        setPhone(contact.phone);
+        setAddress(contact.address);
+    } else {
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPhone('');
+        setAddress('');
+    }
+    }, [contact]);
+
 
   return (
     <div className="contactFormContainer">

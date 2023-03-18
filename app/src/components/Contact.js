@@ -14,16 +14,26 @@ const Contact = (props) => {
         addContact(contact);
         // close the form
         setIsEditing(false);
+        setContact({});
+    };
+
+    const editContact = (contact) => {
+        // set contact to be edited
+        console.log(contact);
+        setContact(contact);
+        // open the form
+        setIsEditing(true);
     };
 
     return (
         <div >
             <ContactList
                 contacts={contacts}
-                addContact={()=>setIsEditing(true)}
+                editContact={editContact}
+                addContact={() => editContact()}
                 deleteContact={deleteContact}
             />
-            {isEditing &&<ContactForm contacts={{}} setContact={contactFormSubmit} />}
+            {isEditing &&<ContactForm contact={contact} setContact={contactFormSubmit} />}
         </div>
     );
 };
